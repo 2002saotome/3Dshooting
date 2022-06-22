@@ -58,7 +58,7 @@ class GameScene {
 	//ステージ
 	uint32_t textureHandleStage_ = 0;
 	Model* modelStage_ = nullptr;
-	WorldTransform worldTransformStage_;
+	WorldTransform worldTransformStage_[20];
 
 	//プレイヤー
 	uint32_t textureHandlePlayer_ = 0;
@@ -84,6 +84,15 @@ class GameScene {
 
 	uint32_t texttureHandleGameOver_ = 0;
 	Sprite* spriteGameOver_ = nullptr;
+
+	//サウンド
+	uint32_t soundDataHandleTitleBGM_ = 0;
+	uint32_t soundDataHandleGamePlayBGM_ = 0;
+	uint32_t soundDataHandleGameOverBGM_ = 0;
+	uint32_t soundDataHandleEnemyHitSE_ = 0;
+	uint32_t soundDataHandlePlayerHitSE_ = 0;
+	uint32_t voiceHandleBGM_ = 0;
+	
 	//プレイヤー更新
 	void playerUpdate();
 
@@ -93,8 +102,8 @@ class GameScene {
 
 	void EnemyUpdate(); //敵更新
 	void EnemyMove();   //敵移動
-
 	void EnemyBorn(); //敵発生
+	void EnemyJump(); //敵のジャンプ
 
 	void Collision();            //衝突判定
 	void CollisionplayerEnemy(); //衝突判定(プレイヤーと敵)
@@ -104,6 +113,8 @@ class GameScene {
 	void GamePlayDraw3D();
 	void GamePlayDraw2DBack();
 	void GamePlayDraw2DNear();
+
+	void StageUpdate();  //ステージ更新
 
 	void TitleUpdate();     //タイトル更新
 	void TitleDraw2DNear(); //タイトル2D
@@ -129,6 +140,9 @@ class GameScene {
 	int beamTimer_ = 0; //ビーム発射タイマー
 
 	float enemySpeed_[10] = {}; //敵スピード
+
+	float enemyjumpSpeed_[10] = {};  //敵ジャンプ移動速度
+
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
